@@ -13,6 +13,8 @@ import Card from '../components/Card';
 import Input from '../components/Input';
 import NumberContainer from '../components/NumberContainer';
 import Colors from '../constants/colors';
+import BodyText from '../components/BodyText';
+import MainButton from '../components/MainButton';
 
 const StartGameScreen = props => {
   //Set up the usestate call and register some state
@@ -61,14 +63,18 @@ const StartGameScreen = props => {
   if (confirmed) {
     confirmedOutupt = (
       <Card style={styles.summaryContainer}>
-        <Text>You selectd</Text>
+        <Text>You selected</Text>
         <NumberContainer>{selectedNumber}</NumberContainer>
-        <Button
+        {/* <Button
           title='START GAME'
           // onStartGame is a property of <StartGameScreen> in App.js and forward the currently selected number
           // to onStartGame, managed in the state of StartGameScreen bound to the startGameHandler in App.js
           onPress={() => props.onStartGame(selectedNumber)}
-        />
+        /> */}
+        <MainButton onPress={() => props.onStartGame(selectedNumber)}>
+          START GAME
+        </MainButton>
+        {/* /> */}
       </Card>
     );
   }
@@ -82,7 +88,7 @@ const StartGameScreen = props => {
       <View style={styles.screen}>
         <Text style={styles.title}>Start a new Game!</Text>
         <Card style={styles.inputContainer}>
-          <Text>Select a Number</Text>
+          <BodyText>Select a Number</BodyText>
           <Input
             style={styles.input}
             blurOnSubmit
@@ -96,18 +102,16 @@ const StartGameScreen = props => {
           <View style={styles.ButtonContainer}>
             <View style={styles.button}>
               <Button
-                style={styles.button}
-                color={Colors.accent}
                 title='Reset'
                 onPress={resetInputHandler}
+                color={Colors.accent}
               />
             </View>
             <View style={styles.button}>
               <Button
-                style={styles.button}
-                color={Colors.primary}
                 title='Confirm'
                 onPress={confirmInputHandler}
+                color={Colors.primary}
               />
             </View>
           </View>
@@ -131,7 +135,8 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 20,
-    marginVertical: 10 //it replaces marginBottom and marginTop
+    marginVertical: 10, //it replaces marginBottom and marginTop
+    fontFamily: 'open-sans-bold'
   },
   ButtonContainer: {
     flexDirection: 'row',
